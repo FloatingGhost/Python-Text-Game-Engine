@@ -10,6 +10,9 @@ if debug:
     print("Imported WorldMap")
 
 class WorldMap:
+    """World map
+      for managing scenes within the game"""
+
     def __init__(self, width, height):
         self.scenes = []
         for i in range(height):
@@ -17,13 +20,16 @@ class WorldMap:
             for j in range(width):
                 row.append(0)
             self.scenes.append(row)
+    
     def get(self,x,y):
+        """Return the scene at x,y (or try to)"""
         try:
             return self.scenes[y][x]
         except IndexError:
             print("That scene is not part of the worldmap")
 
     def addScene(self, scene, x, y):
+        """Add the specified scene"""
         try:
             assert(type(scene) == type(Scene()) or scene==0)
             self.scenes[y][x] = scene
@@ -36,6 +42,7 @@ class WorldMap:
 
 
     def setMap(self, newmap):
+        """Completely change the map to a new array of scenes"""
         try:
             #Test for valid map passing
             #There musr be at LEAST 1 scene
