@@ -24,16 +24,22 @@ class WorldMap:
         self.SIZE_X = width    
     def get(self,x,y):
         """Return the scene at x,y (or try to)"""
+       
         try:
-            return self.scenes[y][x]
+            return self.scenes[x][y]
         except IndexError:
             print("That scene is not part of the worldmap")
 
+    def can_move_to(self, x,y):
+        try:
+            return self.scenes[x][y] != 0
+        except:
+            return False
     def addScene(self, scene, x, y):
         """Add the specified scene"""
         try:
             assert(type(scene) == type(Scene()) or scene==0)
-            self.scenes[y][x] = scene
+            self.scenes[x][y] = scene
         except AssertionError:
             print("The scene you tried to add was not actually a scene")
             sys.exit(1)

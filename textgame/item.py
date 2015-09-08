@@ -8,6 +8,7 @@ class Item:
         self.desc = desc
         self.short_desc = short_desc
         self.can_pick_up = can_pick_up
+        self.name = name
 
     def __repr__(self):
         return self.name + ": " + self.short_desc

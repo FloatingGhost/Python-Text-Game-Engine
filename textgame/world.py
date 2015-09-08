@@ -36,30 +36,31 @@ class World:
                                     self.player.getY())))
 
     def move_north(self):
-        if self.player.getY() - 1 >= 0 and \
-            self.worldmap.get(self.player.getX(), self.player.getY()-1) != 0:
-                self.player.move_north()
+        if self.worldmap.can_move_to(self.player.getX(),
+                                     self.player.getY()-1):
+            self.player.move_north() 
         else:
             print("There isn't anything that way!")
     
     def move_south(self):
-        if self.player.getY() + 1 < self.worldmap.SIZE_Y and \
-            self.worldmap.get(self.player.getX(), self.player.getY() +1) != 0:
+        if self.worldmap.can_move_to(self.player.getX(),
+                                     self.player.getY()+1):
                 self.player.move_south()
         else:
             print("There isn't anything that way!")
 
     def move_east(self):
-        if self.player.getX() + 1 < self.worldmap.SIZE_X and \
-            self.worldmap.get(self.player.getX() + 1, self.player.getY()) != 0:
-                self.player.move_south()
+        if self.worldmap.can_move_to(self.player.getX()+1,
+                                     self.player.getY()):
+                self.player.move_east()
+
         else:
             print("There isn't anything that way!")
 
     def move_west(self):
-        if self.player.getX() - 1 >= 0 and \
-            self.worldmap.get(self.player.getX()-1, self.player.getY()) != 0:
-                self.player.move_south()
+        if self.worldmap.can_move_to(self.player.getX()-1,
+                                     self.player.getY()):
+                self.player.move_west()
         else:
             print("There isn't anything that way!")
  

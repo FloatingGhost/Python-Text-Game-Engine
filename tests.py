@@ -6,7 +6,7 @@ print("--Testing imports...\n")
 from textgame.world import *
 from textgame.scene import *
 from textgame.item  import *
-print("--Imports succesful.\n")
+print("\n--Imports succesful.\n")
 
 print("--Creating world\n")
 world = World()
@@ -47,7 +47,7 @@ A longer test scene
 
 You can See:
 Nothing of note"""
-print(str(world.get_current()))
+
 assert(str(world.get_current()).lower() == scene_expect.lower())
 
 
@@ -66,6 +66,5 @@ try:
 except:
     pass
 world.move_east()
-
 assert(str(world.get_current()).lower() == scene_2_expect.lower()) 
 print("\n\n--Passed tests.\n")
