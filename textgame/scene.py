@@ -3,16 +3,22 @@
 from textgame import item
 
 class Scene:
-    def __init__(self, scene_description="Basic Desc", items=[]):
+    def __init__(self, scene_description="Basic Desc", longer="Longer Desc",
+                 items=[]):
         self.items = items
         self.scene_description = scene_description
-
+        self.longer_desc = longer 
+        
     def __repr__(self):
-        rep = scene_description
-        if len(self.items) > 0:
-            rep += "\nYou can see:"
-        for i in self.items:
-            rep += "\n{}".format(str(i))
+        rep = "You are standing in "+self.scene_description+"\n"
+        rep += "\n"+self.longer_desc
+        rep += "\nYou can see:"
+        if len(self.items) == 0:
+            rep += "\nNothing of note"
+        else:
+            for i in self.items:
+                rep += "\n{}".format(str(i))
+        return rep
 
     def setDesc(self,desc):
         self.scene_description = desc

@@ -7,6 +7,13 @@ class Player:
         self.x = x
         self.y = y
         self.inventory = inventory
+    
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y
+
     def move_north(self):
         self.y -= 1
 

@@ -20,7 +20,8 @@ class WorldMap:
             for j in range(width):
                 row.append(0)
             self.scenes.append(row)
-    
+        self.SIZE_Y = height
+        self.SIZE_X = width    
     def get(self,x,y):
         """Return the scene at x,y (or try to)"""
         try:
