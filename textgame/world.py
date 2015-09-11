@@ -45,6 +45,8 @@ class World:
             raise MovementError("Can't go there! (Northbound)")
  
     def move_south(self):
+        print(self.worldmap.can_move_to(self.player.getX(),
+                                     self.player.getY()+1))
         if self.worldmap.can_move_to(self.player.getX(),
                                      self.player.getY()+1):
                 self.player.move_south()

@@ -89,19 +89,26 @@ except MovementError:
     print(":) Could not move South")
 
 world.move_east()
-print(str(world.get_current()))
+
+
 assert(str(world.get_current()).lower() == scene_2_expect.lower()) 
 
 print("--Moving South")
 #Should now only be able to go south/west
 try:
     world.move_north()
+except SystemExit:
+    sys.exit(1)
+except MovementError:
+    print(":) Could not move North")
+    
+try:
     world.move_east()
     sys.exit(1)
 except SystemExit:
     sys.exit(1)
 except MovementError:
-    pass
+    print(":) Could not move East")
 
 world.move_south()
 
@@ -112,6 +119,5 @@ Right and down one
 You can see:
 Excalibur: Massive sword"""
 
-print(str(world.get_current()))
 assert(str(world.get_current()).lower() == scene_3_expect.lower())
 print("\n\n--Passed tests.\n")

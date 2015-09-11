@@ -26,7 +26,7 @@ class WorldMap:
         """Return the scene at x,y (or try to)"""
        
         try:
-            return self.scenes[x][y]
+            return self.scenes[y][x]
         except IndexError:
             print("That scene is not part of the worldmap")
 
@@ -35,11 +35,11 @@ class WorldMap:
             return False
         if x > self.SIZE_X or y > self.SIZE_Y:
             return False
-        print("Getting {},{}".format(x,y))
+        #print("Getting {},{}".format(x,y))
         try:
-            return self.scenes[x][y] != 0 
+            return self.scenes[y][x] != 0 
         except Exception as ex:
-            print(ex)
+            #print(ex)
             return False
     def addScene(self, scene, x, y):
         """Add the specified scene"""
