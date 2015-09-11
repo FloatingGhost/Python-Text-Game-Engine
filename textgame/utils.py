@@ -1,0 +1,2 @@
+class MovementError(Exception):
+    pass

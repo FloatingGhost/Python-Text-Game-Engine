@@ -31,9 +31,15 @@ class WorldMap:
             print("That scene is not part of the worldmap")
 
     def can_move_to(self, x,y):
+        if x < 0 or y < 0:
+            return False
+        if x > self.SIZE_X or y > self.SIZE_Y:
+            return False
+        print("Getting {},{}".format(x,y))
         try:
-            return self.scenes[x][y] != 0
-        except:
+            return self.scenes[x][y] != 0 
+        except Exception as ex:
+            print(ex)
             return False
     def addScene(self, scene, x, y):
         """Add the specified scene"""

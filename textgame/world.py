@@ -3,6 +3,7 @@ import os
 import sys
 from textgame.worldmap import *
 from textgame.player import *
+from textgame.utils import *
 
 
 debug= os.environ["debug"] == "on"
@@ -40,27 +41,30 @@ class World:
                                      self.player.getY()-1):
             self.player.move_north() 
         else:
-            print("There isn't anything that way!")
-    
+            #print("There isn't anything that way!")
+            raise MovementError("Can't go there! (Northbound)")
+ 
     def move_south(self):
         if self.worldmap.can_move_to(self.player.getX(),
                                      self.player.getY()+1):
                 self.player.move_south()
         else:
-            print("There isn't anything that way!")
+            #print("There isn't anything that way!")
+            raise MovementError("Can't go there! (Southbound)")
 
     def move_east(self):
         if self.worldmap.can_move_to(self.player.getX()+1,
                                      self.player.getY()):
                 self.player.move_east()
-
+            
         else:
-            print("There isn't anything that way!")
-
+            #print("There isn't anything that way!")
+            raise MovementError("Can't go there! (Eastbound)")
+    
     def move_west(self):
         if self.worldmap.can_move_to(self.player.getX()-1,
                                      self.player.getY()):
                 self.player.move_west()
         else:
-            print("There isn't anything that way!")
- 
+            #print("There isn't anything that way!")
+            raise MovementError("Can't go there! (Westbound)")

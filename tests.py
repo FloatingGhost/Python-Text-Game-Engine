@@ -6,6 +6,8 @@ print("--Testing imports...\n")
 from textgame.world import *
 from textgame.scene import *
 from textgame.item  import *
+from textgame.utils import *
+
 print("\n--Imports succesful.\n")
 
 print("--Creating world\n")
@@ -47,7 +49,7 @@ A longer test scene
 
 You can See:
 Nothing of note"""
-
+print("--Testing intro scene\n")
 assert(str(world.get_current()).lower() == scene_expect.lower())
 
 
@@ -57,14 +59,59 @@ Longer to the right
 
 You can See:
 Nothing of note"""
+print("--Moving East")
 #We should only be able to move East from here
 try:
     world.move_north()
-    world.move_west()
-    world.move_south()
+    print("** Could move north! Exiting!")
     sys.exit(1)
-except:
-    pass
+except SystemExit:
+    sys.exit(1)
+except MovementError: 
+    print(":) Could not move North")
+
+try:
+    world.move_west()
+    print("** Could move west! Exiting!")
+    sys.exit(1)
+except SystemExit:
+    sys.exit(1)
+except MovementError:
+    print(":) Could not move West")
+
+try:
+    world.move_south()
+    print("** Could move south! Exiting!")
+    sys.exit(1)
+except SystemExit:
+    sys.exit(1)
+except MovementError:
+    print(":) Could not move South")
+
 world.move_east()
+print(str(world.get_current()))
 assert(str(world.get_current()).lower() == scene_2_expect.lower()) 
+
+print("--Moving South")
+#Should now only be able to go south/west
+try:
+    world.move_north()
+    world.move_east()
+    sys.exit(1)
+except SystemExit:
+    sys.exit(1)
+except MovementError:
+    pass
+
+world.move_south()
+
+scene_3_expect = """You are standing in a third scene
+
+Right and down one
+
+You can see:
+Excalibur: Massive sword"""
+
+print(str(world.get_current()))
+assert(str(world.get_current()).lower() == scene_3_expect.lower())
 print("\n\n--Passed tests.\n")
