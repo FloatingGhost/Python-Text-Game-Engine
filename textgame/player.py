@@ -40,3 +40,27 @@ class Player:
             print("That item isn't in the inventory")
 
 
+    class Stat:
+      def __init__(self, value):
+        self.value = value
+
+      def setValue(self, n):
+        self.value = value
+
+      def getValue(self):
+        return self.value
+
+      def increment(self):
+        self.value += 1
+
+      def decrement(self):
+        self.value -= 1
+
+      def add(self,n):
+        self.value += n
+
+      def sub(self,n):
+        self.value -= n
+
+      def scale(self,n):
+        self.value *= n

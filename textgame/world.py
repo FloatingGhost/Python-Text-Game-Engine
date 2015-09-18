@@ -18,6 +18,21 @@ class World:
         self.worldmap = WorldMap(3,3)
         self.player = Player(playername, start_x, start_y)
 
+    
+    def getPlayer(self):
+        return self.player
+
+    def setPlayer(self, n):
+        try:
+          assert(type(n) == type(Player("", 0, 0)))
+          self.player = n
+        except AssertionError:
+          print("That isn't a valid player")
+          sys.exit(1)
+
+    def modPlayer(self, function):
+        function(self.player)
+
     def addWorldMap(self, worldmap):
         """Set the world in which to play"""
         try:

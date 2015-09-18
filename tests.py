@@ -120,4 +120,17 @@ You can see:
 Excalibur: Massive sword"""
 
 assert(str(world.get_current()).lower() == scene_3_expect.lower())
+
+print("--Testing player statistics")
+
+def mod_player_function(p):
+  p.hp = p.Stat(10)
+
+world.modPlayer(mod_player_function)
+
+p = world.getPlayer()
+
+assert(p.hp.value == 10)
+print("--That hacky method worked!")
+
 print("\n\n--Passed tests.\n")
