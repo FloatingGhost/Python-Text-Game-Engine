@@ -17,7 +17,6 @@ class World:
     def __init__(self,playername="Player",start_x=0, start_y=0):
         self.worldmap = WorldMap(3,3)
         self.player = Player(playername, start_x, start_y)
-
     
     def getPlayer(self):
         return self.player
@@ -30,7 +29,7 @@ class World:
           print("That isn't a valid player")
           sys.exit(1)
 
-    def modPlayer(self, function):
+    def modifyPlayer(self, function):
         function(self.player)
 
     def addWorldMap(self, worldmap):

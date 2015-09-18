@@ -9,6 +9,7 @@ class Item:
         self.short_desc = short_desc
         self.can_pick_up = can_pick_up
         self.name = name
+        self.interactions = {self:(lambda: print("You can't use an item on itself!"))}
 
     def __repr__(self):
         return self.name + ": " + self.short_desc
@@ -32,3 +33,42 @@ class Item:
 
     def getName(self):
         return self.name
+
+    def addInteraction(self, other_item, interaction):
+        if other_item in self.interactions:
+          self.interactions[other_item] = interaction
+        else:
+          self.interactions.update({other_item:interaction})
+    
+    def useItem(self, other_item):
+        if other_item in self.interactions:
+          func = self.interactions[other_item]
+          return func()
+        else:
+          print("There's nothing I can do there...")
+
+    class Stat:
+      def __init__(self, value):
+        self.value = value
+
+      def setValue(self, n):
+        self.value = value
+
+      def getValue(self):
+        return self.value
+
+      def increment(self):
+        self.value += 1
+
+      def decrement(self):
+        self.value -= 1
+
+      def add(self,n):
+        self.value += n
+
+      def sub(self,n):
+        self.value -= n
+
+      def scale(self,n):
+        self.value *= n
+

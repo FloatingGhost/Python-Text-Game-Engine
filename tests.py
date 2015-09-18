@@ -126,11 +126,30 @@ print("--Testing player statistics")
 def mod_player_function(p):
   p.hp = p.Stat(10)
 
-world.modPlayer(mod_player_function)
+world.modifyPlayer(mod_player_function)
 
 p = world.getPlayer()
 
 assert(p.hp.value == 10)
 print("--That hacky method worked!")
+
+print("--Testing Item Interaction")
+
+i = Item("Test", "Testing", "Testing Testing", True)
+
+i.useItem(i)
+
+assert("y" == input("Does the last line read \"You can't use an item on itself!\"?(y/n)".lower()))
+
+j = Item("Test1", "memes", "double memes", True)
+
+def item_interact():
+  return "WERKZ!"
+
+j.addInteraction(i, item_interact)
+
+assert("WERKZ!" == j.useItem(i))
+
+print("--Item usage works")
 
 print("\n\n--Passed tests.\n")
