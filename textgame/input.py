@@ -16,11 +16,12 @@ class Input:
     
 
   def mainloop(self):
+    self.world.print_scene_description()
     last_input = ""
     while last_input not in self.quitwords:
       last_input = input(self.promptText + " ").strip()
       #Process the input
-      command = last_input.split(" ").lower()
+      command = last_input.lower().split(" ")
       cmd = command[0]
       if cmd in self.quitwords:
         print("Bye!")
@@ -30,8 +31,9 @@ class Input:
         pass
       elif cmd in self.lookwords:
         #Look around/at an item
-        pass
-      elif cmd in takewords: 
+        if len(command) == 1:
+          self.world.print_scene_description()
+      elif cmd in self.takewords: 
         #Take an item
         pass
       else:

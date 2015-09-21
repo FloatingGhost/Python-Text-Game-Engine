@@ -8,9 +8,29 @@ from textgame.input import *
 
 world = World()
 
-SIZE_X = 3
-SIZE_Y = 4
+SIZE_X = 2
+SIZE_Y = 2
 
 worldMap = WorldMap(SIZE_X, SIZE_Y)
 
+scene_1_items = [
+                  Item("Mobile Phone", "Your trusty handheld telecom device",
+                        True),
+                  Item("Lamp", "A bedside lamp", False)
+                ]
 
+scene_1 = Scene("Your Bedroom", "The place where you go to sleep every night",
+                scene_1_items)
+
+scenes = [
+          [scene_1, 0],
+          [0,0]
+         ]
+
+worldMap.setMap(scenes)
+
+world.addWorldMap(worldMap)
+
+i = Input(world)
+
+i.mainloop()

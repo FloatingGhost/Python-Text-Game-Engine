@@ -4,7 +4,11 @@ from textgame.scene import *
 import sys
 import os
 
-debug = os.environ["debug"] == "on"
+try:
+  debug = os.environ["debug"] == "on"
+except:
+  debug = False
+
 
 if debug:
     print("Imported WorldMap")
@@ -24,7 +28,6 @@ class WorldMap:
         self.SIZE_X = width    
     def get(self,x,y):
         """Return the scene at x,y (or try to)"""
-       
         try:
             return self.scenes[y][x]
         except IndexError:
@@ -75,6 +78,7 @@ class WorldMap:
             for i in newmap:
                 for j in i:
                     assert(type(j) == type(Scene()) or j==0)
+            self.scenes = newmap
         except AssertionError as ass_er: #hehehhe
             print("There was a problem creating the map")
             print("Are you sure the array was populated with Scenes?")

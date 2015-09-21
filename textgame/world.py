@@ -6,7 +6,10 @@ from textgame.player import *
 from textgame.utils import *
 
 
-debug= os.environ["debug"] == "on"
+try:
+    debug= os.environ["debug"] == "on"
+except:
+    debug = False
 
 if debug:
     print("Imported world")
