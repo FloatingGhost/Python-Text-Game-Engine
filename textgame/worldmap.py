@@ -41,6 +41,18 @@ class WorldMap:
         except Exception as ex:
             #print(ex)
             return False
+
+    def getCurrent(self):
+        return self.scenes[self.player.x][self.player.y]
+
+    def pickUp(self, item):
+      if item in self.getCurrent().getItems():
+        self.player.addItem(item)
+        self.getCurrent().removeItem(item)
+      else:
+        print("I can't see that!")
+
+
     def addScene(self, scene, x, y):
         """Add the specified scene"""
         try:

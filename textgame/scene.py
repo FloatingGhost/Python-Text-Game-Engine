@@ -31,3 +31,7 @@ class Scene:
 
     def addItem(self, item):
         self.items.append(item)
+
+    def getItems(self):
+        return self.items
+

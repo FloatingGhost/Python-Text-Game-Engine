@@ -139,7 +139,7 @@ i = Item("Test", "Testing", "Testing Testing", True)
 
 i.useItem(i)
 
-assert("y" == input("Does the last line read \"You can't use an item on itself!\"?(y/n)".lower()))
+assert("y" == input("\nDoes the last line read \"You can't use an item on itself!\"?(y/n)".lower()))
 
 j = Item("Test1", "memes", "double memes", True)
 
@@ -147,9 +147,8 @@ def item_interact():
   return "WERKZ!"
 
 j.addInteraction(i, item_interact)
-
 assert("WERKZ!" == j.useItem(i))
-
-print("--Item usage works")
+assert("WERKZ!" == i.useItem(j))
+print("\n--Item usage works")
 
 print("\n\n--Passed tests.\n")

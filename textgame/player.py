@@ -7,7 +7,9 @@ class Player:
         self.x = x
         self.y = y
         self.inventory = inventory
-    
+        self.addItem = self.add_item
+
+
     def getX(self):
         return self.x
 

@@ -59,8 +59,6 @@ class World:
             raise MovementError("Can't go there! (Northbound)")
  
     def move_south(self):
-        print(self.worldmap.can_move_to(self.player.getX(),
-                                     self.player.getY()+1))
         if self.worldmap.can_move_to(self.player.getX(),
                                      self.player.getY()+1):
                 self.player.move_south()
@@ -84,3 +82,6 @@ class World:
         else:
             #print("There isn't anything that way!")
             raise MovementError("Can't go there! (Westbound)")
+
+    def pickUp(self, item):
+       self.worldmap.pickup(item)

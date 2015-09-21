@@ -34,11 +34,19 @@ class Item:
     def getName(self):
         return self.name
 
-    def addInteraction(self, other_item, interaction):
-        if other_item in self.interactions:
-          self.interactions[other_item] = interaction
-        else:
-          self.interactions.update({other_item:interaction})
+    def addInteraction(self, other_item, interaction, _sentFromOther=False):
+        try:
+          assert(type(other_item) == type(Item("")))
+          
+          if other_item in self.interactions:
+            self.interactions[other_item] = interaction
+          else:
+            self.interactions.update({other_item:interaction})
+
+          if not _sentFromOther:
+            other_item.addInteraction(self, interaction, True)
+        except AssertionError:
+          print("AddInteraction: Either not a valid other item or function")
     
     def useItem(self, other_item):
         if other_item in self.interactions:

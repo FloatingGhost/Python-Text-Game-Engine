@@ -14,6 +14,7 @@ from textgame.world import *
 from textgame.scene import *
 from textgame.item  import *
 from textgame.utils import *
+from textgame.input import *
 ```
 
 And make sure that works, if not, modify your PYTHONPATH to include 
@@ -91,4 +92,22 @@ world.addWorldMap(scenes)
 ##Creating Items - InDev!!!
 
 Now to put things in the scene.
-I'll complete this when the API is done. 
+
+```python
+#Create the item
+myItem = Item("ItemName", "ItemDescription", "LongerDescription", True)
+##The last argument is "can pick up" - i.e can you put it in your inventory?
+
+#Add it to the scene
+
+scene.addItem(myItem)
+
+#You can pick it up later with world.pickUp(myItem)
+```
+
+
+##Input engine
+
+The user has to be able to control the player!
+I've provided textgame.input to help with that!
+ 
