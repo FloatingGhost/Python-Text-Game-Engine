@@ -13,7 +13,14 @@ class Input:
     self.movewords = ["go", "move", "walk"]
     self.lookwords = ["look", "view", "read"]
     self.takewords = ["take", "grab", "get"]
-    
+   
+  def item_match(self, item_array):
+    scene_items = self.world.get_current().getItems()
+    for i in item_array:
+      for j in scene_items:
+        if i.lower() in str(j).lower():
+          return j
+    return 0
 
   def mainloop(self):
     self.world.print_scene_description()
@@ -33,6 +40,8 @@ class Input:
         #Look around/at an item
         if len(command) == 1:
           self.world.print_scene_description()
+        else:
+          print(str(self.item_match(command[1:])))
       elif cmd in self.takewords: 
         #Take an item
         pass
