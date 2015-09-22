@@ -15,9 +15,14 @@ worldMap = WorldMap(SIZE_X, SIZE_Y)
 
 scene_1_items = [
                   Item("Mobile Phone", "Your trusty handheld telecom device",
-                        True),
+                        can_pick_up=True),
                   Item("Lamp", "A bedside lamp", False)
                 ]
+
+def fn(self):
+  print( "meems")
+
+scene_1_items[0].setOnLook(fn)
 
 scene_1 = Scene("Your Bedroom", "The place where you go to sleep every night",
                 scene_1_items)

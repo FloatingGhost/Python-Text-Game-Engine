@@ -26,3 +26,9 @@ class Inventory:
             if i.getName() == name:
                 return i
         return None
+    def printInventory(self):
+      if len(self.items) == 0:
+        print("You're not holding anything")
+      else:
+        for i in self.items:
+          print(str(i))

@@ -50,7 +50,7 @@ class WorldMap:
 
     def pickUp(self, item):
       if item in self.getCurrent().getItems():
-        self.player.addItem(item)
+        #self.world.player.addItem(item)
         self.getCurrent().removeItem(item)
       else:
         print("I can't see that!")

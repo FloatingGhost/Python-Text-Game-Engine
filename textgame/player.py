@@ -2,7 +2,7 @@
 from textgame.inventory import *
 from textgame.item import *
 class Player:
-    def __init__(self, name, x, y, inventory=[]):
+    def __init__(self, name, x, y, inventory=Inventory()):
         self.name = name
         self.x = x
         self.y = y
@@ -41,7 +41,8 @@ class Player:
         except AssertionError:
             print("That item isn't in the inventory")
 
-
+    def printInventory(self):
+      self.inventory.printInventory()
     class Stat:
       def __init__(self, value):
         self.value = value

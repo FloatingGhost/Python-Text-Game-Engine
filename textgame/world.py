@@ -86,5 +86,12 @@ class World:
             #print("There isn't anything that way!")
             raise MovementError("Can't go there! (Westbound)")
 
+    def printInventory(self):
+      self.player.printInventory()
+
     def pickUp(self, item):
-       self.worldmap.pickup(item)
+      if item in self.worldmap.get(self.player.getX(), self.player.getY()).getItems():
+        self.player.addItem(item)
+        self.worldmap.get(self.player.getX(), self.player.getY()).removeItem(item)
+      else:
+        print("I can't see that!")

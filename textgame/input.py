@@ -13,7 +13,8 @@ class Input:
     self.movewords = ["go", "move", "walk"]
     self.lookwords = ["look", "view", "read"]
     self.takewords = ["take", "grab", "get"]
-   
+    self.invewords = ["i", "inven", "bag", "inventory"]
+ 
   def item_match(self, item_array):
     scene_items = self.world.get_current().getItems()
     for i in item_array:
@@ -41,9 +42,25 @@ class Input:
         if len(command) == 1:
           self.world.print_scene_description()
         else:
-          print(str(self.item_match(command[1:])))
+          item =(self.item_match(command[1:]))
+          if item != 0:
+            print(str(item))
+            item.onLook()
+          else:
+            print("I can't see that!")
+
       elif cmd in self.takewords: 
         #Take an item
-        pass
+        item =(self.item_match(command[1:]))
+        if item != 0:
+          if item.pickUp():
+            self.world.pickUp(item)
+          else:
+            print("I can't take that!")
+        else:      
+            print("I can't see that!")
+ 
+      elif cmd in self.invewords:
+        self.world.printInventory()
       else:
         print("I don't know how to do that.")

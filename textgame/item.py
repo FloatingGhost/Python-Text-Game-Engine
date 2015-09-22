@@ -34,6 +34,12 @@ class Item:
     def getName(self):
         return self.name
 
+    def onLook(self):
+        pass
+
+    def setOnLook(self, onLook):
+        self.onLook = onLook
+
     def addInteraction(self, other_item, interaction, _sentFromOther=False):
         try:
           assert(type(other_item) == type(Item("")))
