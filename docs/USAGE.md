@@ -110,4 +110,14 @@ scene.addItem(myItem)
 
 The user has to be able to control the player!
 I've provided textgame.input to help with that!
+
+Just create it and run it, i.e
+
+```python
+#Create the input engine
+input = Input()
+
+#Start the game
+input.mainloop()
+```
  
