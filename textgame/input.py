@@ -62,5 +62,6 @@ class Input:
  
       elif cmd in self.invewords:
         self.world.printInventory()
+
       else:
         print("I don't know how to do that.")
