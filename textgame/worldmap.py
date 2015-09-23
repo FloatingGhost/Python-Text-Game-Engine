@@ -28,10 +28,13 @@ class WorldMap:
         self.SIZE_X = width    
     def get(self,x,y):
         """Return the scene at x,y (or try to)"""
+        if x < 0 or y < 0:
+          return 0
         try:
             return self.scenes[y][x]
         except IndexError:
-            print("That scene is not part of the worldmap")
+            #print("That scene is not part of the worldmap")
+            return 0
 
     def can_move_to(self, x,y):
         if x < 0 or y < 0:

@@ -52,7 +52,25 @@ class World:
         """Tell the user where they are"""
         print(str(self.worldmap.get(self.player.getX(),
                                     self.player.getY())))
+        x = self.player.getX()
+        y = self.player.getY()
+        nth = self.worldmap.get(x, y - 1)
+        if nth != 0:
+          print("\nTo the north: {}".format(nth.getDesc()))
 
+        est = self.worldmap.get(x + 1, y)
+        if est != 0:                         
+          print("\nTo the east: {}".format(est.getDesc()))
+
+        sth = self.worldmap.get(x, y + 1)
+        if sth != 0:                         
+          print("\nTo the south: {}".format(sth.getDesc()))
+
+        wst = self.worldmap.get(x - 1, y)
+        if wst != 0:                         
+          print("\nTo the west: {}".format(wst.getDesc()))
+          
+            
     def move_north(self):
         if self.worldmap.can_move_to(self.player.getX(),
                                      self.player.getY()-1):
@@ -88,6 +106,9 @@ class World:
 
     def printInventory(self):
       self.player.printInventory()
+
+    def getInventory(self):
+      return self.player.getInventory()
 
     def pickUp(self, item):
       if item in self.worldmap.get(self.player.getX(), self.player.getY()).getItems():

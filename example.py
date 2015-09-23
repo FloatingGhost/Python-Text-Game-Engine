@@ -19,16 +19,27 @@ scene_1_items = [
                   Item("Lamp", "A bedside lamp", False)
                 ]
 
-def fn(self):
-  print( "meems")
+def fn():
+  print( "It's low on battery :(")
 
 scene_1_items[0].setOnLook(fn)
 
 scene_1 = Scene("Your Bedroom", "The place where you go to sleep every night",
                 scene_1_items)
 
+scene_2_items = [
+                  Item("Phone charger", "A way to charge up electrical devices")
+                ]
+
+def chargePhone():
+  print("You put your phone on to charge.")
+  
+scene_1_items[0].addInteraction(scene_2_items[0], chargePhone)
+
+scene_2 = Scene("Your living room", "The room that you spend most of your time in",
+                scene_2_items)
 scenes = [
-          [scene_1, 0],
+          [scene_1, scene_2],
           [0,0]
          ]
 

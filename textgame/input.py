@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-
+from textgame.utils import *
 
 class Input:
   def __init__(self, world, promptText=">"):
@@ -14,9 +14,13 @@ class Input:
     self.lookwords = ["look", "view", "read"]
     self.takewords = ["take", "grab", "get"]
     self.invewords = ["i", "inven", "bag", "inventory"]
+    self.usewords  = ["use", "put"]
  
-  def item_match(self, item_array):
-    scene_items = self.world.get_current().getItems()
+  def item_match(self, item_array, from_world=True):
+    if from_world:
+      scene_items = self.world.get_current().getItems()
+    else:
+      scene_items = self.world.getInventory().getItems()
     for i in item_array:
       for j in scene_items:
         if i.lower() in str(j).lower():
@@ -36,7 +40,24 @@ class Input:
         sys.exit(0)  
       elif cmd in self.movewords:
         #Move
-        pass
+        try:
+          if "north" in command:
+            self.world.move_north()
+            self.world.print_scene_description()
+          elif "east" in command:
+            self.world.move_east()
+            self.world.print_scene_description()
+          elif "south" in command:
+            self.world.move_south()
+            self.world.print_scene_description()
+          elif "west" in command:
+            self.world.move_west()
+            self.world.print_scene_description()
+          else:
+            print("Where do you want me to go?")       
+        except MovementError:
+          print("I can't go that way!")
+
       elif cmd in self.lookwords:
         #Look around/at an item
         if len(command) == 1:
@@ -59,7 +80,10 @@ class Input:
             print("I can't take that!")
         else:      
             print("I can't see that!")
- 
+      elif cmd in self.usewords:
+        
+        item1 = self.item_match(command[1:], True)
+        
       elif cmd in self.invewords:
         self.world.printInventory()
 

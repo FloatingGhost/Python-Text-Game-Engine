@@ -41,6 +41,9 @@ class Player:
         except AssertionError:
             print("That item isn't in the inventory")
 
+    def getInventory(self):
+      return self.inventory
+
     def printInventory(self):
       self.inventory.printInventory()
     class Stat:

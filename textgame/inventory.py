@@ -20,6 +20,9 @@ class Inventory:
 
     def get_item_by_index(self, i):
         return self.items[i]
+  
+    def getItems(self):
+        return self.items
 
     def get_item_by_name(self, name):
         for i in self.items:

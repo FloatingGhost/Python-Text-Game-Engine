@@ -23,7 +23,7 @@ class Scene:
     def setDesc(self,desc):
         self.scene_description = desc
 
-    def getDesc(self,desc):
+    def getDesc(self):
         return self.scene_description
 
     def removeItem(self, item):
