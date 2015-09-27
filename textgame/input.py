@@ -16,16 +16,26 @@ class Input:
     self.invewords = ["i", "inven", "bag", "inventory"]
     self.usewords  = ["use", "put"]
  
-  def item_match(self, item_array, from_world=True):
+  def item_match(self, item_array, from_world=True, _onlyOne = True):
     if from_world:
       scene_items = self.world.get_current().getItems()
     else:
       scene_items = self.world.getInventory().getItems()
+    items = []
     for i in item_array:
       for j in scene_items:
         if i.lower() in str(j).lower():
-          return j
-    return 0
+          if _onlyOne:
+            return j
+          else:
+            items.append(j)
+    if _onlyOne:
+      return 0
+    else:
+      if len(items) == 0:
+        return 0
+      else:
+        return items
 
   def mainloop(self):
     self.world.print_scene_description()
@@ -81,9 +91,9 @@ class Input:
         else:      
             print("I can't see that!")
       elif cmd in self.usewords:
-        
-        item1 = self.item_match(command[1:], True)
-        
+        items = self.item_match(command[1:], True, _onlyOne=False)
+        print(items)        
+
       elif cmd in self.invewords:
         self.world.printInventory()
 
