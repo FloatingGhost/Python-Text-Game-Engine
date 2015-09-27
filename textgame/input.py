@@ -21,6 +21,9 @@ class Input:
       scene_items = self.world.get_current().getItems()
     else:
       scene_items = self.world.getInventory().getItems()
+    inv = self.world.getInventory().getItems()
+    for i in inv:
+      scene_items.append(i)
     items = []
     for i in item_array:
       for j in scene_items:
@@ -28,7 +31,8 @@ class Input:
           if _onlyOne:
             return j
           else:
-            items.append(j)
+            if j not in items:
+              items.append(j)
     if _onlyOne:
       return 0
     else:
@@ -92,7 +96,18 @@ class Input:
             print("I can't see that!")
       elif cmd in self.usewords:
         items = self.item_match(command[1:], True, _onlyOne=False)
-        print(items)        
+        print(items)
+        if items == 0:
+          print("I don't know what you want me to use")
+        else:
+          if len(items) == 0:
+            print("I don't know how to do that")
+          elif len(items) == 1:
+            items[0].useItem(items[0])
+          elif len(items) == 2:
+            items[0].useItem(items[1])
+          else:
+            print("I can only use 2 things at once!")
 
       elif cmd in self.invewords:
         self.world.printInventory()
